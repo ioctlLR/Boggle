@@ -60,9 +60,11 @@ namespace Boggle
 			if (!VerifySolvers(s_solvers, "ritqwtagsceopkyr", dictionary, scorer, 194, 335)) return;
 			if (!VerifySolvers(s_solvers, "gnessripetaltseb", dictionary, scorer, 1351, 4540)) return;
 
+#if !DEBUG
 			Console.WriteLine("All solvers passed.  Starting Benchmarks...");
 
 			BenchmarkRunner.Run<Program>();
+#endif
 
 			foreach (var solver in s_solvers)
 			{
