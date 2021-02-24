@@ -44,12 +44,19 @@ namespace Boggle.Core
 		{
 			var size = boardEdgeLength * boardEdgeLength;
 			var board = new char[size];
+			var dice = new List<string>(size + 5);
+			while (dice.Count < size)
+			{
+				dice.AddRange(s_dice);
+			}
 			var rng = new Random();
 			for (var i = 0; i < board.Length; i++)
 			{
-				board[i] = s_dice[rng.Next(s_dice.Length)][rng.Next(6)];
+				var dieIdx = rng.Next(dice.Count);
+				board[i] = dice[dieIdx][rng.Next(6)];
+				dice.RemoveAt(dieIdx);
 			}
-			return board.ToString();
+			return new string(board);
 		}
 	}
 }
